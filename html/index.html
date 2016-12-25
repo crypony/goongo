@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Board tutorial - step 2</title>
+    <script type="text/javascript" src="wgo/wgo.min.js"></script> <!-- linking WGo javascript -->
+  </head>
+  <body>
+    <!-- Dropdown menu for selecting tool -->
+    <select id="tool" style="display: block; margin-bottom: 10px;">
+      <option value="black" selected>Black stone</option>
+      <option value="white">White stone</option>
+      <option value="SQ">Square</option>
+      <option value="TR">Triangle</option>
+      <option value="CR">Circle</option>
+      <option value="remove">Remove</option>
+    </select>
+    <div id="board">
+      <!-- board will go here -->
+    </div>
+	<script>
+	var board = new WGo.Board(document.getElementById("board"), {
+    width: 600,
+	});
+	board.addEventListener("click", function(x, y) {
+		if(tool.value == "black") {
+			board.addObject({
+				x: x,
+				y: y,
+				c: WGo.B
+			});
+		}
+		else if(tool.value == "white") {
+			board.addObject({
+				x: x,
+				y: y,
+				c: WGo.W
+			});
+		}
+		else if(tool.value == "remove") {
+			board.removeObjectsAt(x, y);
+		}
+		else if(tool.value == "plane") {
+			board.addObject({
+				x: x,
+				y: y,
+				type: plane
+			});
+		}
+		else {
+			board.addObject({
+				x: x,
+				y: y,
+				type: tool.value
+			});
+		}
+	});
+
+	</script>
+  </body>
+</html>

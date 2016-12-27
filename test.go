@@ -169,6 +169,8 @@ func main() {
 	http.HandleFunc("/view/", viewHandler)
 	http.HandleFunc("/edit/", editHandler)
 	http.HandleFunc("/save/", saveHandler)
-
+	http.Handle("/", http.FileServer(http.Dir("html")))
+	
 	http.ListenAndServe(":8008", nil)
+	
 }
